@@ -1,29 +1,22 @@
 package Input;
-import java.awt.Frame;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public class Listener extends JFrame implements MouseListener, KeyListener{
-	private JFrame frame;
+public class PanelListener extends JPanel implements MouseListener, KeyListener{
+	private JPanel panel;
 	private Robot robot;
 	
-	public Listener(JFrame f)
+	public PanelListener(JPanel p)
 	{
 		super();
-		this.frame = f;
-		try {
-			robot = new Robot();
-		} catch (java.awt.AWTException e){};
-		int j;
-		for(j=0;j<f.getComponentCount();j++){
-			f.getComponent(j).addMouseListener(this);
-			f.getComponent(j).addKeyListener(this);
-		}
+		this.panel = p;
+		this.panel.addMouseListener(this);
+		this.panel.addKeyListener(this);
 	}
 	
 	@Override
