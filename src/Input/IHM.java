@@ -39,8 +39,7 @@ public class IHM extends JFrame {
 	
 	public JPanel initPanelScreen()
 	{
-		JPanel panelScreen = new JPanel();
-		panelScreen.setSize(800, 600);
+		JPanel panelScreen = new JPanel();	
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(new File("res/image.png"));
