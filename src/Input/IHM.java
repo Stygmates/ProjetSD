@@ -1,5 +1,8 @@
 package Input;
 
+import java.awt.Dimension;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -10,71 +13,78 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class IHM extends JFrame {
-	JPanel mainPanel = new JPanel();
-	JPanel panelScreen = initPanelScreen();
-	JPanel panelBoutons = new JPanel();
-	
-	JButton boutonExit = new JButton("Exit");
-	JButton boutonOther = new JButton("Other");
-	
+
 	public IHM()
 	{
-		super();
+//		super();
+//		JPanel mainpanel = new JPanel();
+//		JPanel panelScreen = new ScreenPanel();
+//		JPanel panelBoutons = new JPanel();
+//		
+//		JButton boutonExit = new JButton("Quitter");
+//		JButton boutonRefresh = new JButton("Actualiser");
+//		
+//		panelBoutons.add(boutonExit);
+//		panelBoutons.add(boutonRefresh);
+//		
+//		
+//		ActionListener actionBoutonExit = new ActionListener(){
+//			public void actionPerformed(ActionEvent e)
+//			{
+//				System.exit(0);
+//			};
+//		};
+//		
+//		boutonExit.addActionListener(actionBoutonExit);
+//		mainpanel.add(panelScreen);
+//		mainpanel.add(panelBoutons);
+//		mainpanel.setLayout(new GridLayout(2,1));
+//		
+//		this.add(mainpanel);
 		
-		this.addListeners();
+		GridBagLayout grid = new GridBagLayout();
+		JPanel mainpanel = new JPanel(new GridBagLayout());
 		
-		panelBoutons.add(boutonExit);
-		panelBoutons.add(boutonOther);
+		ScreenPanel screenpanel = new ScreenPanel();
+		JPanel buttonpanel = new JPanel(new GridBagLayout());
 		
-		this.mainPanel.add(this.panelScreen);
-		this.mainPanel.add(this.panelBoutons);
+		JButton exitbutton = new JButton("Quitter");
+		JButton refreshbutton = new JButton("Rafraichir");
 		
-		this.add(this.mainPanel);
 		
-		this.setTitle("Contrôle a distance");
+		ActionListener exitButtonAction = new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+			
+		};
+		
+		ActionListener refreshbuttonaction = new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			}
+		};
+		exitbutton.addActionListener(exitButtonAction);
+		refreshbutton.addActionListener(refreshbuttonaction);
+		buttonpanel.add(exitbutton);
+		buttonpanel.add(refreshbutton);
+		
+		mainpanel.add(screenpanel);
+		mainpanel.add(buttonpanel);
+		this.add(mainpanel);
+		
+		this.setTitle("Contrôle a distance"); 
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		this.setExtendedState(MAXIMIZED_BOTH);
 		this.setVisible(true);
 	}
-	
-	public JPanel initPanelScreen()
-	{
-		JPanel panelScreen = new JPanel();	
-		BufferedImage image = null;
-		try {
-			image = ImageIO.read(new File("res/image.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		JLabel labelScreen = null;
-		if(image!=null)
-		{
-			labelScreen = new JLabel(new ImageIcon(image));
-		}
-		else
-		{
-			labelScreen = new JLabel("Impossible d'afficher l'image");
-		}
-		panelScreen.add(labelScreen);
-		return panelScreen;
-	}
-	
-	public void addListeners(){
-		ActionListener actionBoutonExit = new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
-				System.exit(0);
-			};
-		};
-		this.boutonExit.addActionListener(actionBoutonExit);
-	}
-	
+
 	public static void main(String arg[])
 	{
 		IHM ihm = new IHM();
-		Listener l = new Listener(ihm);
 	}
 
 }
