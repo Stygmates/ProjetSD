@@ -14,15 +14,12 @@ public class IHM extends JFrame{
 	public IHM(){
 		super("Contrôle a distance");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setVisible(true);
-		
 		mainpanel = new JPanel(new GridBagLayout());
 		screenpanel = new ScreenPanel();
 		buttonpanel = new ButtonPanel();
 		
-		Listener listener = new Listener();
-		
-		this.setSize(500, 500);
+		this.setExtendedState(MAXIMIZED_BOTH);
+//		this.setSize(500, 500);
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
@@ -33,6 +30,7 @@ public class IHM extends JFrame{
 		mainpanel.add(buttonpanel,gbc);
 		
 		this.add(mainpanel);
+		this.setVisible(true);
 	}
 
     public static void main(String[] args) {

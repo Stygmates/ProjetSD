@@ -21,7 +21,7 @@ public class ScreenPanel extends JPanel {
 		Listener listener = new Listener();
 		BufferedImage image = null;
 		try {
-			image = ImageIO.read(new File("res/image.png"));
+			image = ImageIO.read(new File("res/image2.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
