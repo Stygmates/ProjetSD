@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
@@ -13,6 +14,8 @@ public class ButtonPanel extends JPanel {
 	
 	public ButtonPanel(){
 		super();
+		
+		JLabel iplabel = new JLabel();
 		JButton connectbutton = new JButton("Connexion");
 		JButton exitbutton = new JButton("Quitter");
 

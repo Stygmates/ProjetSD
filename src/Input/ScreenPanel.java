@@ -37,8 +37,9 @@ public class ScreenPanel extends JPanel {
 		}
 		this.add(labelscreen);
 		
-		Border redline = BorderFactory.createLineBorder(Color.red);
-		this.setBorder(redline);
+//		Border redline = BorderFactory.createLineBorder(Color.red);
+//		this.setBorder(redline);
+		
         this.addKeyListener(listener);
         this.addMouseListener(listener);
         this.addMouseMotionListener(listener);

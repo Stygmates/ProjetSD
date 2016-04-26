@@ -1,90 +1,42 @@
 package Input;
 
-import java.awt.Dimension;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public class IHM extends JFrame {
-
-	public IHM()
-	{
-//		super();
-//		JPanel mainpanel = new JPanel();
-//		JPanel panelScreen = new ScreenPanel();
-//		JPanel panelBoutons = new JPanel();
-//		
-//		JButton boutonExit = new JButton("Quitter");
-//		JButton boutonRefresh = new JButton("Actualiser");
-//		
-//		panelBoutons.add(boutonExit);
-//		panelBoutons.add(boutonRefresh);
-//		
-//		
-//		ActionListener actionBoutonExit = new ActionListener(){
-//			public void actionPerformed(ActionEvent e)
-//			{
-//				System.exit(0);
-//			};
-//		};
-//		
-//		boutonExit.addActionListener(actionBoutonExit);
-//		mainpanel.add(panelScreen);
-//		mainpanel.add(panelBoutons);
-//		mainpanel.setLayout(new GridLayout(2,1));
-//		
-//		this.add(mainpanel);
-		
-		GridBagLayout grid = new GridBagLayout();
-		JPanel mainpanel = new JPanel(new GridBagLayout());
-		
-		ScreenPanel screenpanel = new ScreenPanel();
-		JPanel buttonpanel = new JPanel(new GridBagLayout());
-		
-		JButton exitbutton = new JButton("Quitter");
-		JButton refreshbutton = new JButton("Rafraichir");
-		
-		
-		ActionListener exitButtonAction = new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-			
-		};
-		
-		ActionListener refreshbuttonaction = new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			}
-		};
-		exitbutton.addActionListener(exitButtonAction);
-		refreshbutton.addActionListener(refreshbuttonaction);
-		buttonpanel.add(exitbutton);
-		buttonpanel.add(refreshbutton);
-		
-		mainpanel.add(screenpanel);
-		mainpanel.add(buttonpanel);
-		this.add(mainpanel);
-		
-		this.setTitle("Contrôle a distance"); 
+public class IHM extends JFrame{
+	protected JPanel mainpanel;
+	protected ScreenPanel screenpanel;
+	protected ButtonPanel buttonpanel;
+	
+	public IHM(){
+		super("Contrôle a distance");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setExtendedState(MAXIMIZED_BOTH);
 		this.setVisible(true);
+		
+		mainpanel = new JPanel(new GridBagLayout());
+		screenpanel = new ScreenPanel();
+		buttonpanel = new ButtonPanel();
+		
+		Listener listener = new Listener();
+		
+		this.setSize(500, 500);
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		mainpanel.add(screenpanel,gbc);
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		mainpanel.add(buttonpanel,gbc);
+		
+		this.add(mainpanel);
 	}
 
-	public static void main(String arg[])
-	{
-		IHM ihm = new IHM();
-	}
-
+    public static void main(String[] args) {
+    	IHM ihm = new IHM();
+		ihm.screenpanel.requestFocusInWindow();
+    }
 }
