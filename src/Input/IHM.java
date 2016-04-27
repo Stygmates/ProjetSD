@@ -13,7 +13,7 @@ public class IHM extends JFrame{
 	protected String ipaddress = null;
 	
 	public IHM(){
-		super("Contrôle a distance");
+		super("Controle a distance");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		mainpanel = new JPanel(new GridBagLayout());
 		screenpanel = new ScreenPanel();
