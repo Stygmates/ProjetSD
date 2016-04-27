@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,7 +27,7 @@ public class IHMServer extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			       try {
-					     
+			    	   LocateRegistry.createRegistry(1099);
 			    	   ServerImpl objLocal = new ServerImpl();
 			    	   Naming.rebind("rmi://localhost:1099/ServerImpl",objLocal) ;
 			    	   System.out.println("Serveur pret");
