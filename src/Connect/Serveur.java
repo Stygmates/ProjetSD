@@ -11,7 +11,7 @@ public class Serveur {
        try {
 		     
     	   ServerImpl objLocal = new ServerImpl();
-    	   Naming.rebind("rmi://localhost:1099/ServerInterface",objLocal) ;
+    	   Naming.rebind("rmi://localhost:1099/ServerImpl",objLocal) ;
     	   System.out.println("Serveur pret"); 
        }
     catch (RemoteException re) { System.out.println(re) ; }
