@@ -5,8 +5,19 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.rmi.RemoteException;
+
+import Connect.ServerImpl;
 
 public class Listener implements KeyListener, MouseListener, MouseMotionListener{
+	public ServerImpl serv;
+	public Listener ()
+	{
+	}
+	public Listener (ServerImpl serv1)
+	{
+		serv =  serv1;
+	}
 
 
     public void keyTyped(KeyEvent e) {
@@ -45,6 +56,7 @@ public class Listener implements KeyListener, MouseListener, MouseMotionListener
         else{
             System.out.println("Touche pressee: " + e.getKeyChar());
         }
+        serv.robot.keyPress(e.getKeyCode());
     }
 
     public void keyReleased(KeyEvent e) {
@@ -64,9 +76,8 @@ public class Listener implements KeyListener, MouseListener, MouseMotionListener
         else{
             System.out.println("Touche relachee: " + e.getKeyChar());
         }
+        serv.robot.keyRelease(e.getKeyCode());
     }
-
-
 
     public void mouseClicked(MouseEvent e) {
         System.out.println("Click de souris en (" + e.getX() + ", " + e.getY() + ")");
@@ -74,14 +85,17 @@ public class Listener implements KeyListener, MouseListener, MouseMotionListener
 
     public void mousePressed(MouseEvent e) {
         System.out.println("Souris pressee en (" + e.getX() + ", " + e.getY() + ")");
+        serv.robot.mousePress(e.getButton());
     }
 
     public void mouseReleased(MouseEvent e) {
         System.out.println("Souris relachee en (" + e.getX() + ", " + e.getY() + ")");
+        serv.robot.mouseRelease(e.getButton());
     }
 
     public void mouseEntered(MouseEvent e) {
         System.out.println("Souris entree en (" + e.getX() + ", " + e.getY() + ")");
+        serv.robot.mouseMove(e.getX(), e.getY());
     }
 
     public void mouseExited(MouseEvent e) {
@@ -95,6 +109,7 @@ public class Listener implements KeyListener, MouseListener, MouseMotionListener
 
     public void mouseMoved(MouseEvent e) {
         System.out.println("Souris bougee en (" + e.getX() + ", " + e.getY() + ")");
+        serv.robot.mouseMove(e.getX(), e.getY());
     }
 
 }

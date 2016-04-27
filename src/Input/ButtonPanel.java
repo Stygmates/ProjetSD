@@ -12,12 +12,11 @@ import java.rmi.RemoteException;
 import javax.swing.*;
 import javax.swing.border.Border;
 
-import Connect.ServerImpl;
+import Connect.*;
 
 public class ButtonPanel extends JPanel {
-	public String ipaddress = "127.0.0.1";
 	
-	public ButtonPanel(IHM ihm){
+	public ButtonPanel(IHM2 ihm){
 		super(new GridLayout(1,3));
 		
 		JButton ipbutton = new JButton("Modifier l'adresse ip");
@@ -28,14 +27,14 @@ public class ButtonPanel extends JPanel {
 		ipbutton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				ipaddress = JOptionPane.showInputDialog("Nouvelle adresse ip");
+				ihm.ipaddress = JOptionPane.showInputDialog("Nouvelle adresse ip");
 			}
 		});
 		connectbutton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 			    try {
-			    	ServerImpl server =(ServerImpl) Naming.lookup("//"+ipaddress+"/ServerImpl");
+			    	ServerInterface server =(ServerInterface) Naming.lookup("//"+ihm.ipaddress+"/ServerImpl");
 			    	System.out.println("Connexion effectuee");
 			     }
 			     catch (NotBoundException re) { System.out.println(re) ; }

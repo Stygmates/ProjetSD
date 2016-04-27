@@ -8,7 +8,7 @@ import java.net.MalformedURLException ;
 public class Client {
     public static void main(String [] args) {
     try {
-    	ServerImpl server =(ServerImpl) Naming.lookup("//"+args[0]+"/ServerImpl");
+    	ServerInterface server =(ServerInterface) Naming.lookup("//127.0.0.1/ServerImpl");
 		System.out.println("Le client recoit : "+server.messageDistant()); 
      }
      catch (NotBoundException re) { System.out.println(re) ; }

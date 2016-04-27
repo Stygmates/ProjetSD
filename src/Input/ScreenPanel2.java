@@ -1,6 +1,5 @@
 package Input;
 
-import java.awt.GridBagLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -8,12 +7,13 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class ScreenPanel extends JPanel{
-	public ScreenPanel(){
-		super(new GridBagLayout());
+public class ScreenPanel2 extends JPanel {
+	public ScreenPanel2(){
+		super();
 		BufferedImage image = null;
 		try {
-			image = ImageIO.read(new File("res/image.png"));
+			
+			image = ImageIO.read(new File("res/image2.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -28,10 +28,5 @@ public class ScreenPanel extends JPanel{
 			labelscreen = new JLabel("Impossible d'afficher l'image");
 		}
 		this.add(labelscreen);
-        Listener listener = new Listener();
-
-        this.addKeyListener(listener);
-        this.addMouseListener(listener);
-        this.addMouseMotionListener(listener);
 	}
 }
