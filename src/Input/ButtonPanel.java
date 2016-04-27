@@ -36,7 +36,7 @@ public class ButtonPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 			    try {
 			    	ServerImpl server =(ServerImpl) Naming.lookup("//"+ipaddress+"/ServerImpl");
-			    	System.out.println("Connexion effectuée");
+			    	System.out.println("Connexion effectuee");
 			     }
 			     catch (NotBoundException re) { System.out.println(re) ; }
 			     catch (RemoteException re) { System.out.println(re) ; }
