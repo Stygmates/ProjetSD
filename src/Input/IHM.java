@@ -10,13 +10,14 @@ public class IHM extends JFrame{
 	protected JPanel mainpanel;
 	protected ScreenPanel screenpanel;
 	protected ButtonPanel buttonpanel;
+	protected String ipaddress = null;
 	
 	public IHM(){
 		super("Contrôle a distance");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		mainpanel = new JPanel(new GridBagLayout());
 		screenpanel = new ScreenPanel();
-		buttonpanel = new ButtonPanel();
+		buttonpanel = new ButtonPanel(this);
 		
 		this.setExtendedState(MAXIMIZED_BOTH);
 //		this.setSize(500, 500);

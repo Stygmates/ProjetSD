@@ -1,5 +1,6 @@
 package Connect;
 
+
 public class Data {
     
     private int choix;

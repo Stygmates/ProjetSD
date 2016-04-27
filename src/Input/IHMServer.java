@@ -1,12 +1,18 @@
 package Input;
 
+import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import Connect.ServerImpl;
 
 public class IHMServer extends JFrame{
 	public IHMServer(){
@@ -15,13 +21,29 @@ public class IHMServer extends JFrame{
 		JButton connectbutton = new JButton("Connexion");
 		JButton exitbutton = new JButton("Quitter");
 		
+		ActionListener connectbuttonaction = new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			       try {
+					     
+			    	   ServerImpl objLocal = new ServerImpl();
+			    	   Naming.rebind("rmi://localhost:1099/ServerImpl",objLocal) ;
+			    	   System.out.println("Serveur pret");
+			       }
+			    catch (RemoteException re) { System.out.println(re) ; }
+			    catch (MalformedURLException e2) { System.out.println(e2) ; }
+			    catch(AWTException e3){System.out.println(e3);}
+			}
+		};
+		connectbutton.addActionListener(connectbuttonaction);
+		
 		ActionListener exitButtonAction = new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
-			
 		};
 		exitbutton.addActionListener(exitButtonAction);
 		mainPanel.add(connectbutton);

@@ -9,33 +9,34 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.border.Border;
 
 import Connect.ServerImpl;
 
 public class ButtonPanel extends JPanel {
-	public String ip = null;
+	public String ipaddress = "127.0.0.1";
 	
-	public ButtonPanel(){
-		super(new GridLayout(2,2));
+	public ButtonPanel(IHM ihm){
+		super(new GridLayout(1,3));
 		
-		JLabel iplabel = new JLabel("Adresse ip:");
-		JTextField newip = new JTextField();
+		JButton ipbutton = new JButton("Modifier l'adresse ip");
 		JButton connectbutton = new JButton("Connexion");
 		JButton exitbutton = new JButton("Quitter");
 		
-		connectbutton.addActionListener(new ActionListener(){
-
+		
+		ipbutton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				ip = newip.getText();
+				ipaddress = JOptionPane.showInputDialog("Nouvelle adresse ip");
+			}
+		});
+		connectbutton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
 			    try {
-			    	ServerImpl server =(ServerImpl) Naming.lookup("//"+ip+"/ServerImpl");
+			    	ServerImpl server =(ServerImpl) Naming.lookup("//"+ipaddress+"/ServerImpl");
+			    	System.out.println("Connexion effectuée");
 			     }
 			     catch (NotBoundException re) { System.out.println(re) ; }
 			     catch (RemoteException re) { System.out.println(re) ; }
@@ -43,9 +44,8 @@ public class ButtonPanel extends JPanel {
 			}
 			
 		});
-		System.out.println(ip);
-		this.add(iplabel);
-		this.add(newip);
+		
+		this.add(ipbutton);
 		this.add(connectbutton);
 		this.add(exitbutton);
 		Border blueline = BorderFactory.createLineBorder(Color.blue);
