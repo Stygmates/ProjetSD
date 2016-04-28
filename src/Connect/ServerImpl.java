@@ -72,7 +72,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface  
 	}
 
 	@Override
-	public BufferedImage test() {
+	public BufferedImage test() throws RemoteException{
 		Rectangle rectangle = new Rectangle(1366,768);
 		return this.robot.createScreenCapture(rectangle);
 	}
