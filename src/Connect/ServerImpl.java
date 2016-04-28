@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject ;
 import java.awt.AWTException;
 import java.awt.Rectangle;
 import java.awt.Robot;
+import java.awt.event.InputEvent;
 import java.awt.image.BufferedImage;
 import java.rmi.RemoteException ;
 
@@ -43,11 +44,23 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface  
 
 	@Override
 	public void mousePress(int buttons) throws RemoteException {
-		this.robot.mousePress(buttons);
+		if(buttons == 1){
+			this.robot.mousePress(InputEvent.BUTTON1_MASK);
+		}
+		else if(buttons == 3)
+		{
+			this.robot.mousePress(InputEvent.BUTTON3_MASK);
+		}
 	}
 
 	@Override
 	public void mouseRelease(int buttons) throws RemoteException {
-		this.robot.mouseRelease(buttons);
+		if(buttons == 1){
+			this.robot.mouseRelease(InputEvent.BUTTON1_MASK);
+		}
+		else if(buttons == 3)
+		{
+			this.robot.mouseRelease(InputEvent.BUTTON3_MASK);
+		}
 	}
 }
