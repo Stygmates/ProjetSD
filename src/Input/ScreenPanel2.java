@@ -4,6 +4,8 @@ import java.awt.AWTException;
 import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -36,11 +38,23 @@ public class ScreenPanel2 extends JPanel {
 	public static void main(String [] arg) throws AWTException{
 		Robot robot = new Robot();
 		Rectangle rectangle = new Rectangle((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight());
-		BufferedImage image = robot.createScreenCapture(rectangle);
-		
 		JFrame frame = new JFrame();
-		JLabel labelscreen = new JLabel(new ImageIcon(image));
+		JLabel labelscreen = new JLabel();
+		BufferedImage image = robot.createScreenCapture(rectangle);
+		ActionListener actiontimer = new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				labelscreen.setIcon(new ImageIcon(image));
+				labelscreen.revalidate();
+				labelscreen.repaint();
+				labelscreen.update(labelscreen.getGraphics());
+				frame.add(labelscreen);
+			}
+		};
+		Timer t = new Timer(1, actiontimer);
 		frame.add(labelscreen);
+		frame.setSize(500, 500);
 		frame.setVisible(true);
 	}
 
