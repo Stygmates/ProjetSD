@@ -17,8 +17,8 @@ public class Screenshot extends JPanel {
 	    try {
 	    	ServerInterface server =(ServerInterface) Naming.lookup("//192.168.1.23/ServerImpl");
 		    JLabel label = new JLabel();
-		    BufferedImage image = server.createScreenCapture();
-		    label.setIcon(new ImageIcon(image));
+		    ImageIcon image = server.createScreenCapture();
+		    label.setIcon(image	);
 		    panel.add(label);
 	     }
 	    catch (NotBoundException re) { System.out.println(re) ; }
