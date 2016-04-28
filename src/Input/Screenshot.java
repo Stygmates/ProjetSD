@@ -17,14 +17,13 @@ public class Screenshot extends JPanel {
 	    try {
 	    	ServerInterface server =(ServerInterface) Naming.lookup("//192.168.1.23/ServerImpl");
 		    JLabel label = new JLabel();
-		    BufferedImage image = server.test();
+		    BufferedImage image = server.createScreenCapture();
 		    label.setIcon(new ImageIcon(image));
-		    System.out.println(server.messageDistant());
 		    panel.add(label);
 	     }
-	     catch (NotBoundException re) { System.out.println(re) ; }
-	     catch (RemoteException re) { System.out.println(re) ; }
-	     catch (MalformedURLException e) { System.out.println(e) ; }
+	    catch (NotBoundException re) { System.out.println(re) ; }
+	    catch (RemoteException re) { System.out.println(re) ; }
+	    catch (MalformedURLException e) { System.out.println(e) ; }
 	    frame.add(panel);
 		frame.setSize(500, 500);
 		frame.setVisible(true);
