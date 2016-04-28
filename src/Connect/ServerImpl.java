@@ -19,7 +19,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface  
 
 	@Override
 	public BufferedImage createScreenCapture() throws RemoteException {
-		Rectangle rectangle = new Rectangle((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight());
+		Rectangle rectangle = new Rectangle(1366,768);
+		//Rectangle rectangle = new Rectangle((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight());
 		return this.robot.createScreenCapture(rectangle);
 	}
 
@@ -63,5 +64,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface  
 		else if(buttons == 3){
 			this.robot.mouseRelease(InputEvent.BUTTON3_MASK);
 		}
+	}
+
+	@Override
+	public String test() throws RemoteException {
+		return "Coucou toi :3";
 	}
 }
