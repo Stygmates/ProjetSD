@@ -1,0 +1,13 @@
+Notre interpretation du projet a mene à l'integration d'une application permettant le controle distant d'une machine, qui peut controler la souris ainsi que les touches de la machine distante.
+Les fichiers d'exemple et d'implementation du serveur se trouvent dans le package, les fichiers concernant les programmes distants se trouvent dans le package input.
+Le fichier IHM contient la Jframe contenant l'integration de l'interface affichant la machine distante, implementant un screenpanel.
+Le listener contient toutes les actions que doit faire le robot distant lorsque l'on interagit sur l'interface du client.
+IHM server sert a instancier l'objet distant et a s'y connecter.
+
+Pour la compilation : 
+javac Connect/*.java Input/*.java
+Du cote du serveur, pas le choix on fait seulement java Input.IHMServer
+Pour lancer les programmes, trois choix s'offrent à l'utilisateur:
+java Input.IHM avec une adresse ip deja definie dans le code
+java Input.IHM <adresse ip serveur>
+java Input.IHM <adresse ip serveur> 1 qui est le mode sans l'affichage graphique pour des gains de performance.
