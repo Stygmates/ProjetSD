@@ -19,6 +19,7 @@ public class Screenshot extends JPanel {
 		    JLabel label = new JLabel();
 		    BufferedImage image = server.createScreenCapture();
 		    label.setIcon(new ImageIcon(image));
+		    System.out.println(server.messageDistant());
 		    panel.add(label);
 	     }
 	     catch (NotBoundException re) { System.out.println(re) ; }
