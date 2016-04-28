@@ -35,7 +35,19 @@ public class IHM extends JFrame{
         ihm.setDefaultCloseOperation(IHM.EXIT_ON_CLOSE);
         
         JPanel mainpanel = new JPanel(new GridBagLayout());
-        ScreenPanel screenpanel = new ScreenPanel(ihm);
+        ScreenPanel screenpanel = null;
+        if(args.length==1)
+        {
+        	screenpanel = new ScreenPanel(ihm,args[0]);
+        }
+        else if(args.length == 2)
+        {
+        	screenpanel = new ScreenPanel(ihm, args[0], Integer.parseInt(args[1]));
+        }
+        else
+        {
+        	screenpanel = new ScreenPanel(ihm);
+        }
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;

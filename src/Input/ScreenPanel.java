@@ -24,19 +24,52 @@ public class ScreenPanel extends JPanel{
         Rectangle rectangle = new Rectangle(1366,768);
         image = listener.serv.createScreenCapture();
 		JLabel label = new JLabel(image);
-//		Timer SimpleTimer = new Timer(1, new ActionListener(){
-//		    @Override
-//		    public void actionPerformed(ActionEvent e) {
-//		    	try {
-//					image = listener.serv.createScreenCapture();
-//				} catch (RemoteException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
-//		    	label.setIcon(image);
-//		    }
-//		});
-//		SimpleTimer.start();
+		this.add(label);
+		Border blueline = BorderFactory.createLineBorder(Color.red);
+		this.setBorder(blueline);
+        this.addKeyListener(listener);
+        this.addMouseListener(listener);
+        this.addMouseMotionListener(listener);
+	}
+	
+	public ScreenPanel(IHM ihm, String ip) throws RemoteException{
+		super(new GridBagLayout());
+		ihm.ipaddress = ip;
+        Listener listener = new Listener(ihm.server);
+        Rectangle rectangle = new Rectangle(1366,768);
+        image = listener.serv.createScreenCapture();
+		JLabel label = new JLabel(image);
+		this.add(label);
+		Border blueline = BorderFactory.createLineBorder(Color.red);
+		this.setBorder(blueline);
+        this.addKeyListener(listener);
+        this.addMouseListener(listener);
+        this.addMouseMotionListener(listener);
+	}
+	
+	public ScreenPanel(IHM ihm, String ip, int mode) throws RemoteException{
+		super(new GridBagLayout());
+		ihm.ipaddress = ip;
+        Listener listener = new Listener(ihm.server);
+        Rectangle rectangle = new Rectangle(1366,768);
+        image = listener.serv.createScreenCapture();
+		JLabel label = new JLabel(image);
+		if(mode == 1)
+		{
+			Timer SimpleTimer = new Timer(1, new ActionListener(){
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		    	try {
+						image = listener.serv.createScreenCapture();
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		    	label.setIcon(image);
+		    	}
+			});
+			SimpleTimer.start();
+		}
 		this.add(label);
 		Border blueline = BorderFactory.createLineBorder(Color.red);
 		this.setBorder(blueline);
