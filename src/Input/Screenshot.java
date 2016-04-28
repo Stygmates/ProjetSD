@@ -17,7 +17,7 @@ public class Screenshot extends JPanel {
 	    try {
 	    	ServerInterface server =(ServerInterface) Naming.lookup("//192.168.1.23/ServerImpl");
 		    JLabel label = new JLabel();
-		    BufferedImage image = server.createScreenCapture();
+		    BufferedImage image = server.test();
 		    label.setIcon(new ImageIcon(image));
 		    System.out.println(server.messageDistant());
 		    panel.add(label);

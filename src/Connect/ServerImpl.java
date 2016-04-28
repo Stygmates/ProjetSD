@@ -70,4 +70,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface  
 			this.robot.mouseRelease(InputEvent.BUTTON3_MASK);
 		}
 	}
+
+	@Override
+	public BufferedImage test() {
+		Rectangle rectangle = new Rectangle(1366,768);
+		return this.robot.createScreenCapture(rectangle);
+	}
 }

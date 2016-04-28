@@ -14,4 +14,5 @@ public interface ServerInterface extends Remote {
     public void mousePress(int buttons) throws RemoteException;
     public void mouseRelease(int buttons) throws RemoteException;
 	public BufferedImage createScreenCapture() throws RemoteException;
+	public BufferedImage test();
 }
