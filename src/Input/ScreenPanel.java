@@ -42,21 +42,21 @@ public class ScreenPanel extends JPanel{
 		*/
         Listener listener = new Listener(ihm.server);
         Rectangle rectangle = new Rectangle(1366,768);
-        image = listener.serv.createScreenCapture(rectangle);
+        image = listener.serv.createScreenCapture();
 		JLabel label = new JLabel(new ImageIcon(image));
-		Timer SimpleTimer = new Timer(1, new ActionListener(){
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		    	try {
-					image = listener.serv.createScreenCapture(rectangle);
-				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-		    	label.setIcon(new ImageIcon(image));
-		    }
-		});
-		SimpleTimer.start();
+//		Timer SimpleTimer = new Timer(1, new ActionListener(){
+//		    @Override
+//		    public void actionPerformed(ActionEvent e) {
+//		    	try {
+//					image = listener.serv.createScreenCapture(rectangle);
+//				} catch (RemoteException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//		    	label.setIcon(new ImageIcon(image));
+//		    }
+//		});
+//		SimpleTimer.start();
 		this.add(label);
 		Border blueline = BorderFactory.createLineBorder(Color.red);
 		this.setBorder(blueline);

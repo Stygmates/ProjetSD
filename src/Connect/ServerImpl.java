@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject ;
 import java.awt.AWTException;
 import java.awt.Rectangle;
 import java.awt.Robot;
+import java.awt.Toolkit;
 import java.awt.event.InputEvent;
 import java.awt.image.BufferedImage;
 import java.rmi.RemoteException ;
@@ -23,8 +24,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface  
     }
 
 	@Override
-	public BufferedImage createScreenCapture(Rectangle screenRect) throws RemoteException {
-		return this.robot.createScreenCapture(screenRect);
+	public BufferedImage createScreenCapture() throws RemoteException {
+		Rectangle rectangle = new Rectangle((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight());
+		return this.robot.createScreenCapture(rectangle);
 	}
 
 	@Override
