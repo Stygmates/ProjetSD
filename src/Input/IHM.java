@@ -32,7 +32,7 @@ public class IHM extends JFrame{
     public static void main(String[] args) throws RemoteException {
 
         IHM ihm = new IHM();
-        ihm.setDefaultCloseOperation(IHM2.EXIT_ON_CLOSE);
+        ihm.setDefaultCloseOperation(IHM.EXIT_ON_CLOSE);
         
         JPanel mainpanel = new JPanel(new GridBagLayout());
 //        ButtonPanel buttonpanel = new ButtonPanel(ihm);
