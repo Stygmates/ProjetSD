@@ -87,7 +87,7 @@ public class Listener implements KeyListener, MouseListener, MouseMotionListener
     }
 
     public void mouseClicked(MouseEvent e) {
-        System.out.println("Click de souris en (" + e.getX() + ", " + e.getY() + ")");
+        System.out.println("Click de souris " + e.getButton() + " en (" + e.getX() + ", " + e.getY() + ")");
     }
 
     public void mousePressed(MouseEvent e) {
@@ -122,11 +122,23 @@ public class Listener implements KeyListener, MouseListener, MouseMotionListener
 
     public void mouseExited(MouseEvent e) {
         System.out.println("Souris sortie en (" + e.getX() + ", " + e.getY() + ")");
+        try {
+			serv.mouseMove(e.getX(), e.getY());
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
     }
 
 
     public void mouseDragged(MouseEvent e) {
         System.out.println("Souris draguee en (" + e.getX() + ", " + e.getY() + ")");
+        try {
+			serv.mouseMove(e.getX(), e.getY());
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
     }
 
     public void mouseMoved(MouseEvent e) {

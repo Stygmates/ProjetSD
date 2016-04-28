@@ -33,14 +33,22 @@ public class IHM2 extends JFrame{
 
         IHM2 ihm = new IHM2();
         ihm.setDefaultCloseOperation(IHM2.EXIT_ON_CLOSE);
-
-        ScreenPanel panel = new ScreenPanel(ihm);
-        ihm.add(panel);
+        
+        JPanel mainpanel = new JPanel(new GridBagLayout());
+        ButtonPanel buttonpanel = new ButtonPanel(ihm);
+        ScreenPanel screenpanel = new ScreenPanel(ihm);
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+        mainpanel.add(screenpanel,gbc);
+		gbc.gridy = 1;
+        mainpanel.add(buttonpanel,gbc);
+        ihm.add(mainpanel);
         ihm.setSize(1366,768);
         ihm.setExtendedState(MAXIMIZED_BOTH);
         ihm.setVisible(true);
 
         //make sure the JPanel has the focus
-        panel.requestFocusInWindow();
+        screenpanel.requestFocusInWindow();
     }
 }
