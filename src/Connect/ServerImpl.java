@@ -16,12 +16,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface  
 		super();
 		robot = new Robot();
 	};
-	
-    public String messageDistant() throws RemoteException { 
-    	
-    	return("Message : Salut !!!") ;
-    
-    }
 
 	@Override
 	public BufferedImage createScreenCapture() throws RemoteException {
@@ -69,11 +63,5 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface  
 		else if(buttons == 3){
 			this.robot.mouseRelease(InputEvent.BUTTON3_MASK);
 		}
-	}
-
-	@Override
-	public BufferedImage test() throws RemoteException{
-		Rectangle rectangle = new Rectangle(1366,768);
-		return this.robot.createScreenCapture(rectangle);
 	}
 }
