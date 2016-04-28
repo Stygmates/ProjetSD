@@ -8,8 +8,10 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import Connect.ServerInterface;
+
 public class ScreenPanel extends JPanel{
-	public ScreenPanel(){
+	public ScreenPanel(ServerInterface server){
 		super(new GridBagLayout());
 		BufferedImage image = null;
 		try {
@@ -28,7 +30,7 @@ public class ScreenPanel extends JPanel{
 			labelscreen = new JLabel("Impossible d'afficher l'image");
 		}
 		this.add(labelscreen);
-        Listener listener = new Listener();
+        Listener listener = new Listener(server);
 
         this.addKeyListener(listener);
         this.addMouseListener(listener);
