@@ -4,13 +4,16 @@ import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.InetAddress;
 import java.net.MalformedURLException;
+import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Connect.ServerImpl;
@@ -29,12 +32,16 @@ public class IHMServer extends JFrame{
 			       try {
 			    	   LocateRegistry.createRegistry(1099);
 			    	   ServerImpl objLocal = new ServerImpl();
-			    	   Naming.rebind("rmi://localhost:1099/ServerImpl",objLocal) ;
-			    	   System.out.println("Serveur pret");
+			    	   String url = "rmi://" + InetAddress.getLocalHost().getHostAddress() + "/ServerImpl";
+			    	   Naming.rebind(url,objLocal) ;
+			    	   System.out.println("Serveur pret en " + url);
 			       }
 			    catch (RemoteException re) { System.out.println(re) ; }
 			    catch (MalformedURLException e2) { System.out.println(e2) ; }
-			    catch(AWTException e3){System.out.println(e3);}
+			    catch(AWTException e3){System.out.println(e3);} catch (UnknownHostException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		};
 		connectbutton.addActionListener(connectbuttonaction);
