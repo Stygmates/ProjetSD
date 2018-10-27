@@ -46,27 +46,26 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface  
 	@Override
 	public void mousePress(int buttons) throws RemoteException {
 		if(buttons == 1){
-			this.robot.mousePress(InputEvent.BUTTON1_MASK);
+			this.robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 		}
 		else if(buttons == 2){
-			this.robot.mousePress(InputEvent.BUTTON2_MASK);
+			this.robot.mousePress(InputEvent.BUTTON2_DOWN_MASK);
 		}
-		else if(buttons == 3)
-		{
-			this.robot.mousePress(InputEvent.BUTTON3_MASK);
+		else if(buttons == 3){
+			this.robot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
 		}
 	}
 
 	@Override
 	public void mouseRelease(int buttons) throws RemoteException {
 		if(buttons == 1){
-			this.robot.mouseRelease(InputEvent.BUTTON1_MASK);
+			this.robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 		}
 		else if(buttons == 2){
-			this.robot.mouseRelease(InputEvent.BUTTON2_MASK);
+			this.robot.mouseRelease(InputEvent.BUTTON2_DOWN_MASK);
 		}
 		else if(buttons == 3){
-			this.robot.mouseRelease(InputEvent.BUTTON3_MASK);
+			this.robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
 		}
 	}
 
